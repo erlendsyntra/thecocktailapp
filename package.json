@@ -1,0 +1,17 @@
+{
+  "name": "1.rehearsalapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "vite --open --host",
+    "build": "vite build",
+    "preview": "vite preview --open --host",
+    "predeploy": "npm run build", 
+    "deploy": "surge ./dist thecocktaildb_erlend.surge.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,18 @@
+@use "./base/reset";
+@use "./base/variables" as *;
+@use "./base/fonts";
+@use "./base/mixins" as *;
+
+/* style to color p icon red */
+p {
+  color: red;
+}
+
+/* style to implement icon within div via after */
+div::after {
+  content: "";
+  left: 0;
+  top: 0;
+  display: block;
+  @include icon("icon-checked", $green, 2rem);
+}

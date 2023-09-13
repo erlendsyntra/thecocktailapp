@@ -1,0 +1,19 @@
+@mixin icon($id, $color: black, $size: 32px, $path: "/icons/icons.svg") {
+  width: $size;
+  height: $size;
+  -webkit-mask-image: url('#{$path}#{"#"}#{$id}');
+  mask-image: url('#{$path}#{"#"}#{$id}');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  background-color: $color;
+}
+
+// @mixin regular($fz: 2.1rem, $lh: 3.3rem, $c: blue) {
+//   font-family: "Roboto", sans-serif;
+//   font-weight: 400;
+//   color: $c;
+//   font-size: $fz;
+//   line-height: $lh;
+// }
