@@ -3,16 +3,29 @@
 @use "./base/fonts";
 @use "./base/mixins" as *;
 
-/* style to color p icon red */
-p {
-  color: red;
-}
+// h1 {
+//   @include bold(4rem, 5rem);
+// }
 
-/* style to implement icon within div via after */
-div::after {
-  content: "";
-  left: 0;
-  top: 0;
-  display: block;
-  @include icon("icon-checked", $green, 2rem);
+.app {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1500px;
+  background-color: lightgrey;
+  min-height: 50px;
+  padding: 2rem;
+  &__header {
+    @include bold(4rem, 5rem, $pink);
+  }
+  &__grid {
+    @include grid(200px, 2rem);
+  }
 }
+/* style to implement icon within div via after */
+// div::after {
+//   content: "";
+//   left: 0;
+//   top: 0;
+//   display: block;
+//   @include icon("icon-checked", $green, 2rem);
+// }
