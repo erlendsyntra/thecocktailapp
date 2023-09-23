@@ -11,27 +11,25 @@ export const getAllCocktails = async () => {
   //     .then((data) => console.log(data.drinks.map((drink) => drink.strDrink)))
   //     .catch((err) => console.log(err));
 
-  //   const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
-  const alphabet = new Array(26)
+  // array with all fetch promises from list of all alfabet letters
+  const allDownloads = new Array(3) // 2=Enkel A en B, 26=A-Z
     .fill(65)
-    .map((el, i) => String.fromCharCode(el + i));
+    .map((el, i) => String.fromCharCode(el + i))
+    .map((ltr) =>
+      fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${ltr}`)
+    );
 
-  //   const allDownloads = [
-  //     fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=l"),
-  //     fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=b"),
-  //     fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=x"),
-  //   ];
-  const allDownloads = alphabet.map((letter) =>
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`)
-  );
-
+  //we wait for all fetch promises to resolve
   const allResponses = await Promise.all(allDownloads);
+  // we wait to get all the json data
   const allDatas = await Promise.all(
-    allResponses.map((response) => response.json())
+    allResponses.map((responseObj) => responseObj.json())
   );
+  // from every dataObject we keep only the .drinks
   const allDrinks = allDatas
-    .filter((data) => data.drinks != null)
+    .filter((data) => data.drinks != null) // filter out all the drinks that have no cocktails = null
     .map((data) => data.drinks);
+  // we flat all the cocktails so they are all in one big array
 
   // creating the object with destructuring an object
   //   return allDrinks.flat().map((data) => ({

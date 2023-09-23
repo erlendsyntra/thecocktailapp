@@ -9,109 +9,25 @@
   </head>
   <body>
     <div class="app">
-      <h1 class="app__header">The Coctail DB</h1>
-      <ul class="app__grid">
-        <li class="app__grid__item">
-          <a href="#">
-            <img
-              src="https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg"
-              alt=""
-            />
-            <p>cocktailnaam</p>
-          </a>
-        </li>
-        <li class="app__grid__item">
-          <a href="#">
-            <img
-              src="https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg"
-              alt=""
-            />
-            <p>cocktailnaam</p>
-          </a>
-        </li>
-        <li class="app__grid__item">
-          <a href="#">
-            <img
-              src="https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg"
-              alt=""
-            />
-            <p>cocktailnaam</p>
-          </a>
-        </li>
-        <li class="app__grid__item">
-          <a href="#">
-            <img
-              src="https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg"
-              alt=""
-            />
-            <p>cocktailnaam</p>
-          </a>
-        </li>
-        <li class="app__grid__item">
-          <a href="#">
-            <img
-              src="https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg"
-              alt=""
-            />
-            <p>cocktailnaam</p>
-          </a>
-        </li>
-        <li class="app__grid__item">
-          <a href="#">
-            <img
-              src="https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg"
-              alt=""
-            />
-            <p>cocktailnaam</p>
-          </a>
-        </li>
-        <li class="app__grid__item">
-          <a href="#">
-            <img
-              src="https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg"
-              alt=""
-            />
-            <p>cocktailnaam</p>
-          </a>
-        </li>
-        <li class="app__grid__item">
-          <a href="#">
-            <img
-              src="https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg"
-              alt=""
-            />
-            <p>cocktailnaam</p>
-          </a>
-        </li>
-        <li class="app__grid__item">
-          <a href="#">
-            <img
-              src="https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg"
-              alt=""
-            />
-            <p>cocktailnaam</p>
-          </a>
-        </li>
-        <li class="app__grid__item">
-          <a href="#">
-            <img
-              src="https://www.thecocktaildb.com/images/media/drink/5a3vg61504372070.jpg"
-              alt=""
-            />
-            <p>cocktailnaam</p>
-          </a>
-        </li>
-      </ul>
+      <header class="app__header">
+        <h1>The Cocktail DB</h1>
+        <p>
+          showing <span class="app__header__start">x</span> from
+          <span class="app__header__total">y</span>
+        </p>
+      </header>
+      <div>
+        <input type="text" id="filterField" />
+      </div>
+      <ul class="app__grid"></ul>
     </div>
-    <!-- example to implement icon within p and color it -->
-    <!-- <p>
-      <svg class="icon">
-        <use href="./icons/icons.svg#icon-checked" />
-      </svg>
-    </p> -->
-    <!-- end example -->
-    <!-- example to implement icon using div:after -->
-    <div></div>
-    <!-- end example -->
+    <template id="gridItem">
+      <li class="app__grid__item">
+        <a href="#">
+          <img class="app__grid__item__image" src="%FOTO%" alt="%NAAM%" />
+          <p class="app__grid__item__text">%NAAM%</p>
+        </a>
+      </li>
+    </template>
   </body>
 </html>

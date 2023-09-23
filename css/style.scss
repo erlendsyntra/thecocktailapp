@@ -16,9 +16,39 @@
   padding: 2rem;
   &__header {
     @include bold(4rem, 5rem, $pink);
+    display: flex;
+    justify-content: space-between;
   }
   &__grid {
     @include grid(200px, 2rem);
+    &__item {
+      position: relative;
+      overflow: hidden;
+      &:hover {
+        .app__grid__item__text {
+          bottom: 0;
+          opacity: 1;
+        }
+        .app__grid__item__image {
+          transform: scale(1.15);
+        }
+      }
+      &__image {
+        transition: all 150ms;
+      }
+      &__text {
+        transition: bottom 150ms 0ms, opacity 800ms 75ms;
+        position: absolute;
+        left: 0;
+        bottom: -4rem;
+        opacity: 0;
+        background-color: rgba($blue, 0.8);
+        @include bold(2rem, 2rem, white);
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+      }
+    }
   }
 }
 /* style to implement icon within div via after */
