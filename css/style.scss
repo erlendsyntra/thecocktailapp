@@ -14,6 +14,11 @@
   background-color: lightgrey;
   min-height: 50px;
   padding: 2rem;
+  .split {
+    display: grid;
+    grid-template-columns: calc(75% - 2rem) 25%;
+    gap: 2rem;
+  }
   &__form {
     position: relative;
 
@@ -45,8 +50,26 @@
     display: flex;
     justify-content: space-between;
   }
+  &__likedgrid {
+    min-height: 300px;
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      img {
+        @include responsive;
+        width: 75px;
+      }
+      &__text {
+        @include bold(1.5rem, 1.5rem, $blue);
+      }
+    }
+  }
   &__grid {
-    @include grid(200px, 2rem);
+    @include grid(175px, 2rem);
+    grid-auto-rows: min-content;
     &__item {
       position: relative;
       overflow: hidden;
@@ -74,14 +97,26 @@
         width: 100%;
         text-align: center;
       }
+      &__icon {
+        position: absolute;
+        z-index: 1;
+        top: 1rem;
+        right: 1rem;
+        width: 3rem;
+        height: 3rem;
+        &--heart {
+          &::after {
+            content: "";
+            @include icon("icon-heart", $pink, 2.5rem);
+          }
+        }
+        &--heart-o {
+          &::after {
+            content: "";
+            @include icon("icon-heart-o", $pink, 2.5rem);
+          }
+        }
+      }
     }
   }
 }
-/* style to implement icon within div via after */
-// div::after {
-//   content: "";
-//   left: 0;
-//   top: 0;
-//   display: block;
-//   @include icon("icon-checked", $green, 2rem);
-// }

@@ -1,18 +1,32 @@
 import "/css/style.scss";
-import { getAllCocktails, render } from "./functions.js";
-
-const grid = document.querySelector(".app__grid");
+import {
+  getAllCocktails,
+  renderCocktails,
+  renderLikedCocktails,
+} from "./functions.js";
 
 async function main() {
   const grid = document.querySelector(".app__grid");
+  const likedGrid = document.querySelector(".app__likedgrid");
   const gridItemTemplate = document.querySelector("#gridItem").innerHTML;
+  const likedGridItemTemplate =
+    document.querySelector("#likedgridItem").innerHTML;
   const allCocktails = await getAllCocktails();
   let filterField = "";
-  render({
+  const likedCocktails = ["15182", "12560", "13162"];
+  renderCocktails({
     grid,
     gridItemTemplate,
     allCocktails,
     filterField,
+    likedCocktails,
+  });
+
+  renderLikedCocktails({
+    likedGrid,
+    likedGridItemTemplate,
+    likedCocktails,
+    allCocktails,
   });
 
   document.querySelector(".app__form__reset").onclick = () => {
@@ -22,12 +36,38 @@ async function main() {
   };
   document.querySelector("#filterField").oninput = (e) => {
     filterField = e.target.value;
-    render({
+    renderCocktails({
       grid,
       gridItemTemplate,
       allCocktails,
       filterField,
+      likedCocktails,
     });
+  };
+
+  likedGrid.onclick = (e) => {
+    if (e.target.className === "removeLike") {
+      //href niet volgen
+      e.preventDefault();
+      const id = e.target.parentElement.dataset.id;
+      likedCocktails.splice(
+        likedCocktails.findIndex((cocktailId) => cocktailId === id),
+        1
+      );
+      renderCocktails({
+        grid,
+        gridItemTemplate,
+        allCocktails,
+        filterField,
+        likedCocktails,
+      });
+      renderLikedCocktails({
+        likedGrid,
+        likedGridItemTemplate,
+        likedCocktails,
+        allCocktails,
+      });
+    }
   };
 }
 

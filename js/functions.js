@@ -31,22 +31,44 @@ export const getAllCocktails = async () => {
     .map((data) => data.drinks);
   // we flat all the cocktails so they are all in one big array
 
-  // creating the object with destructuring an object
-  //   return allDrinks.flat().map((data) => ({
-  //     name: data.strDrink,
-  //     id: data.idDrink,
-  //     photo: data.strDrinkThumb
-  //   }));
-
+  // allDrinks.flat().map(function (drinkObj) {
+  //   return {
+  //     naam: drinkObj.strDrink,
+  //     id: drinkObj.idDrink,
+  //     foto: drinkObj.strDrinkThumb,
+  //   };
+  // })
   return allDrinks.flat().map(({ strDrink, idDrink, strDrinkThumb }) => ({
-    // ronde haakje nodig want anders ziet hij het als een function ipv van object
     strDrink,
     idDrink,
     strDrinkThumb,
   }));
 };
 
-export function render({ grid, gridItemTemplate, allCocktails, filterField }) {
+export function renderLikedCocktails({
+  likedGrid,
+  likedGridItemTemplate,
+  likedCocktails,
+  allCocktails,
+}) {
+  likedGrid.innerHTML = likedCocktails
+    .map((id) => {
+      const foundCocktail = allCocktails.find((c) => c.idDrink === id);
+      return likedGridItemTemplate
+        .replaceAll("%NAAM%", foundCocktail.strDrink)
+        .replaceAll("%ID%", id)
+        .replaceAll("%FOTO%", foundCocktail.strDrinkThumb);
+    })
+    .join("");
+}
+
+export function renderCocktails({
+  grid,
+  gridItemTemplate,
+  allCocktails,
+  filterField,
+  likedCocktails,
+}) {
   let nrOfItems = 0;
   let total = allCocktails.length;
   grid.innerHTML = allCocktails
@@ -55,10 +77,15 @@ export function render({ grid, gridItemTemplate, allCocktails, filterField }) {
         ? true
         : c.strDrink.toLowerCase().indexOf(filterField.toLowerCase()) != -1
     )
-    .map(({ strDrink, strDrinkThumb }) => {
+    .map(({ strDrink, strDrinkThumb, idDrink }) => {
       nrOfItems++;
       return gridItemTemplate
         .replaceAll("%NAAM%", strDrink)
+        .replaceAll("%ID%", idDrink)
+        .replaceAll(
+          "%LIKED%",
+          likedCocktails.includes(idDrink) ? "heart" : "heart-o"
+        )
         .replaceAll("%FOTO%", strDrinkThumb);
     })
     .join("");

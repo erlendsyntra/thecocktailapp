@@ -16,22 +16,32 @@
           <span class="app__header__total">y</span>
         </p>
       </header>
-      <form class="app__form">
+      <form class="app__form" autocomplete="off">
         <input type="text" class="app__form__input" id="filterField" />
         <a href="#" class="app__form__reset"></a>
       </form>
-      <ul class="app__grid"></ul>
+      <div class="split">
+        <ul class="app__grid"></ul>
+        <ul class="app__likedgrid"></ul>
+      </div>
     </div>
     <template id="gridItem">
       <li class="app__grid__item">
         <a
           href="#"
-          class="app__grid__item__icon app__grid__item__icon--heart"
+          class="app__grid__item__icon app__grid__item__icon--%LIKED%"
         ></a>
         <a href="#">
           <img class="app__grid__item__image" src="%FOTO%" alt="%NAAM%" />
-          <p class="app__grid__item__text">%NAAM%</p>
+          <p class="app__grid__item__text">%NAAM% %ID%</p>
         </a>
+      </li>
+    </template>
+    <template id="likedgridItem">
+      <li class="app__likedgrid__item" data-id="%ID%">
+        <img class="app__likedgrid__item__image" src="%FOTO%" alt="%NAAM%" />
+        <p class="app__likedgrid__item__text">%NAAM%</p>
+        <a href="#" class="removeLike">x</a>
       </li>
     </template>
   </body>
