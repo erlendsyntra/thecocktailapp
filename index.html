@@ -16,13 +16,18 @@
           <span class="app__header__total">y</span>
         </p>
       </header>
-      <div>
-        <input type="text" id="filterField" />
-      </div>
+      <form class="app__form">
+        <input type="text" class="app__form__input" id="filterField" />
+        <a href="#" class="app__form__reset"></a>
+      </form>
       <ul class="app__grid"></ul>
     </div>
     <template id="gridItem">
       <li class="app__grid__item">
+        <a
+          href="#"
+          class="app__grid__item__icon app__grid__item__icon--heart"
+        ></a>
         <a href="#">
           <img class="app__grid__item__image" src="%FOTO%" alt="%NAAM%" />
           <p class="app__grid__item__text">%NAAM%</p>

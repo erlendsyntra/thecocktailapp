@@ -45,3 +45,23 @@ export const getAllCocktails = async () => {
     strDrinkThumb,
   }));
 };
+
+export function render({ grid, gridItemTemplate, allCocktails, filterField }) {
+  let nrOfItems = 0;
+  let total = allCocktails.length;
+  grid.innerHTML = allCocktails
+    .filter((c) =>
+      filterField == ""
+        ? true
+        : c.strDrink.toLowerCase().indexOf(filterField.toLowerCase()) != -1
+    )
+    .map(({ strDrink, strDrinkThumb }) => {
+      nrOfItems++;
+      return gridItemTemplate
+        .replaceAll("%NAAM%", strDrink)
+        .replaceAll("%FOTO%", strDrinkThumb);
+    })
+    .join("");
+  document.querySelector(".app__header__start").innerText = nrOfItems;
+  document.querySelector(".app__header__total").innerText = total;
+}

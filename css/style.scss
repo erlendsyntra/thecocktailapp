@@ -14,6 +14,32 @@
   background-color: lightgrey;
   min-height: 50px;
   padding: 2rem;
+  &__form {
+    position: relative;
+
+    &__input {
+      display: block;
+      width: 100%;
+      height: 3rem;
+      @include regular();
+      padding: 2rem;
+      padding-right: 4rem;
+      margin: 1rem 0;
+      outline: none;
+    }
+    &__reset {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      &::after {
+        content: "";
+        @include icon("icon-delete", $pink, 2.5rem);
+      }
+    }
+  }
+
   &__header {
     @include bold(4rem, 5rem, $pink);
     display: flex;

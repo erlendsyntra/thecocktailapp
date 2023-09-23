@@ -1,39 +1,34 @@
 import "/css/style.scss";
-import { getAllCocktails } from "./functions.js";
+import { getAllCocktails, render } from "./functions.js";
 
 const grid = document.querySelector(".app__grid");
 
 async function main() {
+  const grid = document.querySelector(".app__grid");
   const gridItemTemplate = document.querySelector("#gridItem").innerHTML;
   const allCocktails = await getAllCocktails();
   let filterField = "";
+  render({
+    grid,
+    gridItemTemplate,
+    allCocktails,
+    filterField,
+  });
 
-  document.querySelector("#filterField").oninput = function (e) {
-    filterField = e.target.value;
-    render();
+  document.querySelector(".app__form__reset").onclick = () => {
+    document.querySelector("#filterField").value = "";
+    //trigger oninput manually
+    document.querySelector("#filterField").dispatchEvent(new Event("input"));
   };
-
-  function render() {
-    let nrOfItems = 0;
-    let total = allCocktails.length;
-    grid.innerHTML = allCocktails
-      .filter((c) =>
-        filterField == ""
-          ? true
-          : c.strDrink.toLowerCase().indexOf(filterField.toLowerCase()) != -1
-      )
-      .map(({ strDrink, strDrinkThumb }) => {
-        nrOfItems++;
-        return gridItemTemplate
-          .replaceAll("%NAAM%", strDrink)
-          .replaceAll("%FOTO%", strDrinkThumb);
-      })
-      .join("");
-    document.querySelector(".app__header__start").innerText = nrOfItems;
-    document.querySelector(".app__header__total").innerText = total;
-  }
-
-  render();
+  document.querySelector("#filterField").oninput = (e) => {
+    filterField = e.target.value;
+    render({
+      grid,
+      gridItemTemplate,
+      allCocktails,
+      filterField,
+    });
+  };
 }
 
 main();
