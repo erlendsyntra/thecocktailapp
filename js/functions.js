@@ -38,6 +38,7 @@ export const getAllCocktails = async () => {
   //     foto: drinkObj.strDrinkThumb,
   //   };
   // })
+
   return allDrinks.flat().map(({ strDrink, idDrink, strDrinkThumb }) => ({
     strDrink,
     idDrink,

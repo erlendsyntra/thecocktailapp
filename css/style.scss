@@ -3,10 +3,13 @@
 @use "./base/fonts";
 @use "./base/mixins" as *;
 
-// h1 {
-//   @include bold(4rem, 5rem);
-// }
-
+body {
+  overflow-y: scroll;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+}
 .app {
   width: 90%;
   margin: 0 auto;
@@ -119,4 +122,60 @@
       }
     }
   }
+}
+
+.popup {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  z-index: 2;
+  position: fixed;
+  display: none;
+  backdrop-filter: blur(10px);
+  overflow-y: scroll;
+  &.open {
+    display: block;
+  }
+  button {
+    position: absolute;
+    top: 5rem;
+    right: 5rem;
+  }
+  .loading {
+    margin-top: 5rem;
+  }
+  .data {
+    display: none;
+    > * {
+      margin-bottom: 2rem;
+      padding: 0 40px;
+    }
+    .title {
+      margin-top: 2rem;
+      font-size: 5rem;
+      text-transform: uppercase;
+    }
+    .instructions {
+      line-height: 3rem;
+    }
+    .image {
+      @include responsive;
+      width: 50%;
+      margin: 10px auto;
+    }
+    h3 {
+      font-size: 3rem;
+    }
+    ul li {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+body:has(.popup.open) {
+  overflow-y: scroll; //altijd scroll tonen, ook als niet nodig
+  /* bug: after scrolling and opening popup body goes to scrolltop 0*/
+  position: fixed;
+  width: 100%;
 }
